@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <title>管理员登录系统</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <meta content="" name="description" />
+    <meta content="" name="author" />
+    <link rel="stylesheet"  type="text/css" th:href="@{${#themes.code('cas.myself.css.font-awesome')}}"/>
+    <link rel="stylesheet"  type="text/css" th:href="@{${#themes.code('cas.myself.css.simple-line-icons')}}"/>
+    <link rel="stylesheet"  type="text/css" th:href="@{${#themes.code('cas.myself.css.bootstrap')}}"/>
+    <link rel="stylesheet"  type="text/css" th:href="@{${#themes.code('cas.myself.css.uniform')}}"/>
+    <link rel="stylesheet"  type="text/css" th:href="@{${#themes.code('cas.myself.css.bootstrap-switch')}}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{${#themes.code('cas.myself.css.select2')}}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{${#themes.code('cas.myself.css.select2-bootstrap')}}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{${#themes.code('cas.myself.css.select2-bootstrap')}}"/>
+    <link rel="stylesheet" type="text/css" id="style_components" th:href="@{${#themes.code('cas.myself.css.components')}}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{${#themes.code('cas.myself.css.plugins')}}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{${#themes.code('cas.myself.css.login')}}"/>
+    </head>
+</head>
+<body class=" login">
+<div class="menu-toggler sidebar-toggler"></div>
+<!-- BEGIN LOGO -->
+<div class="logo">
+        <img src="/cas/themes/client1/img/logo-big.png" alt="" /></a>
+</div>
+<!-- END LOGO -->
+<!-- BEGIN LOGIN -->
+    <!-- BEGIN LOGIN FORM -->
+<!-- BEGIN LOGIN -->
+<div class="content">
+    <form method="post" th:object="${credential}">
+        <h3 class="form-title font-green">登录</h3>
+        <div class="alert alert-danger" th:if="${#fields.hasErrors('*')}">
+            <button class="close" data-close="alert"></button>
+            <span th:each="err : ${#fields.errors('*')}" th:utext="${err}"></span>
+        </div>
+        <div class="form-group">
+            <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
+            <label class="control-label visible-ie8 visible-ie9">账号</label>
+                    <input class="form-control form-control-solid placeholder-no-fix" name="username"  placeholder="账号"
+                           type="text"
+                           th:disabled="${guaEnabled}"
+                           th:field="*{username}"
+                           th:accesskey="#{screen.welcome.label.netid.accesskey}"
+                           autocomplete="off"/>
+        </div>
+        <div class="form-group">
+            <label class="control-label visible-ie8 visible-ie9">密码</label>
+                    <input class="form-control form-control-solid placeholder-no-fix"
+                           type="password"
+                           th:accesskey="#{screen.welcome.label.password.accesskey}"
+                           th:field="*{password}"
+                           autocomplete="off" placeholder="密码"/>
+        </div>
+        <div class="form-group">
+            <label class="control-label visible-ie8 visible-ie9">验证码</label>
+            <input class="form-control form-control-solid placeholder-no-fix"
+                            name="captcha"
+                            th:field="*{captcha}"
+                            autocomplete="off" placeholder="验证码" />
+        </div>
+        <div class="form-actions">
+            <section class="form-check" th:if="${rememberMeAuthenticationEnabled}">
+                <input type="hidden" name="execution" th:value="${flowExecutionKey}"/>
+                <input type="hidden" name="_eventId" value="submit"/>
+                <input type="hidden" name="geolocation"/>
+                <input  class="btn green uppercase"
+                       name="submit"
+                       accesskey="l"
+                       th:value="#{screen.welcome.button.login}"
+                       tabindex="6"
+                       type="submit"/>
+                <input type="checkbox" name="remember"  value="1"  checked="checked"/>
+                <label class="rememberme check" th:text="#{screen.rememberme.checkbox.title}"></label>
+                <img th:src="@{/captcha.jpg}" id="captcha_img" onclick="javascript:refreshCaptcha()"  style=" margin-left:5px"/>
+            </section>
+        </div>
+    </form>
+</div>
+    <!-- END LOGIN FORM -->
+<div class="copyright">2019 © popjun blog.</div>
+</div>
+<script th:src="@{${#themes.code('cas.myself.script.jquery')}}"></script>
+<script th:src="@{${#themes.code('cas.myself.script.bootstrap')}}"></script>
+<script th:src="@{${#themes.code('cas.myself.script.cookie')}}"></script>
+<script th:src="@{${#themes.code('cas.myself.script.bootstrap-hover-dropdown')}}"></script>
+<script th:src="@{${#themes.code('cas.myself.script.blockui')}}"></script>
+<script th:src="@{${#themes.code('cas.myself.script.uniform')}}"></script>
+<script th:src="@{${#themes.code('cas.myself.script.bootstrap-switch')}}"></script>
+<script th:src="@{${#themes.code('cas.myself.script.validation')}}"></script>
+<script th:src="@{${#themes.code('cas.myself.script.additional')}}"></script>
+<script th:src="@{${#themes.code('cas.myself.script.select2')}}"></script>
+<script th:src="@{${#themes.code('cas.myself.script.app')}}"></script>
+<script th:src="@{${#themes.code('cas.myself.script.login')}}"></script>
+<script type="text/javascript">
+    function refreshCaptcha(){
+        //需要添加随机数保证不是同一个请求
+        $("#captcha_img").attr("src","/cas/captcha.jpg?id=" + new Date() + Math.floor(Math.random()*24));
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,6 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration =com.popjun.sso.cas.server.config.SpringConfig,\
+  com.popjun.sso.cas.server.config.CaptchaWebflowConfiguration,\
+   com.popjun.sso.cas.server.config.TotalHandlerConfiguration
+
+
+

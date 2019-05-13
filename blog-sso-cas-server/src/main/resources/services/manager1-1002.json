@@ -1,0 +1,12 @@
+{
+  "@class" : "org.apereo.cas.services.RegexRegisteredService",
+  "serviceId" : "^(https|imaps|http)://cas.server.com.*",
+  "name" : "cas管理系统",
+  "id" : 1002,
+  "description" : "cas管理系统",
+  "evaluationOrder" : 12,
+  "theme":"client2",
+  "attributeReleasePolicy" : {
+    "@class" : "org.apereo.cas.services.ReturnAllAttributeReleasePolicy"
+  }
+}
