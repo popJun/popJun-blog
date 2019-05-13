@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.popjun.server.admin.persist.dao.BlogUserMapper">
+  <resultMap id="BaseResultMap" type="com.popjun.server.domain.sso.BlogUser">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <result column="user_id" jdbcType="BIGINT" property="id" />
+    <result column="user_nick_name" jdbcType="VARCHAR" property="nickName" />
+    <result column="user_login_name" jdbcType="VARCHAR" property="loginName" />
+    <result column="user_pswd" jdbcType="VARCHAR" property="pswd" />
+    <result column="user_create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="user_last_login_time" jdbcType="TIMESTAMP" property="lastLoginTime" />
+    <result column="user_status" jdbcType="BIGINT" property="status" />
+  </resultMap>
+
+  <sql id="all">
+    SELECT * FROM blog_user
+  </sql>
+
+  <select id="getBlogUser" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <include refid="all"/>
+    <trim prefix="WHERE" prefixOverrides="AND | OR">
+      <if test="loginName != null and loginName.length()>0">
+        AND user_login_name=#{loginName}
+      </if>
+      <if test="pwd != null and pwd.length()>0">
+        AND user_pswd=#{pwd}
+      </if>
+    </trim>
+  </select>
+</mapper>
