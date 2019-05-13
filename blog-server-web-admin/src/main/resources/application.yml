@@ -1,0 +1,17 @@
+server:
+  port: 9100
+spring:
+  application:
+    name: blog-server-web-admin
+  dubbo:
+    registry:
+      id: zookeeper
+      address: zookeeper://192.168.10.105:2183?backup=192.168.10.105:2181,192.168.10.105:2182
+      scan:
+        base-packages: com.popjun.server.web.admin.controller
+cas:
+  server-url-prefix: https://cas.server.com:8443/cas
+  server-login-url: https://cas.server.com:8443/cas/login
+  client-host-url: http://cas.client1.com:9100
+  ignore-pattern: /js/*|/images/*|/view/*|/css/*
+  ignore-url-pattern-type: com.popjun.server.web.admin.config.SimpleUrlPatternMatcherStrategy
