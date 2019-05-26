@@ -2,12 +2,16 @@
 package com.popjun.sso.cas.server.service.impl;
 
 import com.alibaba.dubbo.config.annotation.Service;
+import com.popjun.annotation.NeedLog;
 import com.popjun.constants.enums.CodeEnum;
 import com.popjun.server.dto.ReturnMessageDTO;
+import com.popjun.server.dto.sso.ClientDTO;
 import com.popjun.sso.cas.server.api.ClientService;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+
 import org.apereo.cas.services.RegexRegisteredService;
 import org.apereo.cas.services.RegisteredService;
 import org.apereo.cas.services.ReturnAllAttributeReleasePolicy;
@@ -25,8 +29,8 @@ public class ClientServiceImpl implements ClientService {
 
     public ClientServiceImpl() {
     }
-
-    public ReturnMessageDTO addClientService(String serviceId, Integer id) {
+    @NeedLog
+    public ReturnMessageDTO addClientService(String serviceId, Integer id,String clientName) {
         ReturnMessageDTO returnMessage = new ReturnMessageDTO();
 
         try {
@@ -37,7 +41,7 @@ public class ClientServiceImpl implements ClientService {
             service.setId((long)id);
             service.setAttributeReleasePolicy(re);
             service.setLogoutUrl(new URL("http://" + serviceId));
-            service.setName("自定义客户端02");
+            service.setName(clientName);
             this.servicesManager.save(service);
             this.servicesManager.load();
             returnMessage.setCode(CodeEnum.SUCCESS.getCode());
@@ -47,11 +51,10 @@ public class ClientServiceImpl implements ClientService {
             returnMessage.setMessage("注册服务失败");
             var7.printStackTrace();
         }
-
         return returnMessage;
     }
-
-    public ReturnMessageDTO removeClientService(String serviceId, Integer id) {
+    @NeedLog
+    public ReturnMessageDTO removeClientService(String serviceId) {
         RegisteredService service = this.servicesManager.findServiceBy(serviceId);
         try {
             this.servicesManager.delete(service);
@@ -67,6 +70,10 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public List getAllClientService() {
-        return new ArrayList<>(servicesManager.getAllServices());
+        List<RegisteredService> allServices =new ArrayList<>(servicesManager.getAllServices());
+        List<ClientDTO> clientDTOS = allServices.stream()
+                .map(service ->new ClientDTO(service.getId(),service.getName(),service.getServiceId()))
+                .collect(Collectors.toList());
+        return clientDTOS;
     }
 }

@@ -1,6 +1,7 @@
 package com.popjun.sso.cas.server.custom.handler;
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.popjun.annotation.NeedLog;
 import com.popjun.constants.Constant;
 import com.popjun.server.domain.sso.BlogUser;
 import com.popjun.server.service.admin.api.BlogRoleService;
@@ -25,7 +26,6 @@ public class ShiroAuthenticationHandler {
     BlogRoleService blogRoleService;
     @Reference(version =  Constant.Dubbo.DUBBO_VERSION_ADMIN)
     BlogUserService blogUserService;
-
     protected void authenticateUsernamePasswordInternal(RememberMeUsernamePasswordCaptchaCredential myCredential) throws GeneralSecurityException{
         try {
             UsernamePasswordToken token = new UsernamePasswordToken(myCredential.getUsername(), myCredential.getPassword());

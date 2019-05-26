@@ -1,6 +1,7 @@
 package com.popjun.sso.cas.server.custom.handler;
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.popjun.annotation.NeedLog;
 import com.popjun.constants.Constant;
 import com.popjun.server.domain.sso.BlogUser;
 import com.popjun.server.service.admin.api.BlogUserService;
@@ -20,7 +21,8 @@ public class RememberMeUsernamePasswordCaptchaAuthenticationHandler {
 	@Reference(version =  Constant.Dubbo.DUBBO_VERSION_ADMIN)
 	BlogUserService blogUserService;
 
-	protected void doAuthentication(RememberMeUsernamePasswordCaptchaCredential myCredential) throws GeneralSecurityException {
+	@NeedLog
+	public void doAuthentication(RememberMeUsernamePasswordCaptchaCredential myCredential) throws GeneralSecurityException {
 		String newCaptcha = "";
 		String captcha = myCredential.getCaptcha();
 		HttpServletRequest request = ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getRequest();
@@ -28,7 +30,6 @@ public class RememberMeUsernamePasswordCaptchaAuthenticationHandler {
 		if (obj != null) {
 			newCaptcha = obj.toString();
 		}
-
 		BlogUser blogUser = blogUserService.login(myCredential.getUsername(), myCredential.getPassword());
 		if (blogUser == null) {
 			throw new AccountNotFoundException("账号密码错误");

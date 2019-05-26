@@ -20,7 +20,6 @@
         <druid.version>1.0.28</druid.version>
         <mybatis.version>3.3.0</mybatis.version>
         <shiro.spring.version>1.4.0</shiro.spring.version>
-        <blog.server.domain>1.0.0-SNAPSHOT</blog.server.domain>
         <blog.sso.cas.server.api.version>1.0.0</blog.sso.cas.server.api.version>
         <popijun.version>1.0.0-SNAPSHOT</popijun.version>
         <!-- app.server could be -jetty, -undertow, -tomcat, or blank if you plan to provide appserver -->
@@ -233,11 +232,6 @@
             <version>${lombok.version}</version>
             <scope>provided</scope>
         </dependency>
-        <dependency>
-        <groupId>com.popJun</groupId>
-        <artifactId>blog-server-domain</artifactId>
-        <version>${popijun.version}</version>
-    </dependency>
         <dependency>
             <groupId>com.popJun</groupId>
             <artifactId>blog-server-commons</artifactId>

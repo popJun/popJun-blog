@@ -14,7 +14,6 @@ import java.awt.image.BufferedImage;
  */
 @Controller
 public class CaptchaController {
-    public static final String KEY_CAPTCHA = "captcha";
     @RequestMapping("/captcha.jpg")
     public void getCaptcha(HttpServletRequest request, HttpServletResponse response) {
         try {

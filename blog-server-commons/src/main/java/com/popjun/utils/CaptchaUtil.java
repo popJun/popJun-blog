@@ -1,5 +1,8 @@
 package com.popjun.utils;
 
+import com.popjun.annotation.NeedLog;
+import org.springframework.stereotype.Component;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.Random;

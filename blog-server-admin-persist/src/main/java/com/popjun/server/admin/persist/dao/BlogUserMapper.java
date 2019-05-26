@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
+
 public interface BlogUserMapper{
     List<BlogUser> getBlogUser(@Param("loginName") String loginName, @Param("pwd") String pwd);
 

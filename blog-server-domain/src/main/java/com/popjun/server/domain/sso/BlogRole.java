@@ -8,8 +8,9 @@ import java.io.Serializable;
 @Table(name = "blog_role")
 @Data
 public class BlogRole implements Serializable{
-
+    private static final long serialVersionUID = 5579418898197011511L;
     @Column(name = "role_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long roleId;
 
     /**

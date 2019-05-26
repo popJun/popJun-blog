@@ -1,4 +1,7 @@
 package com.popjun.server.web.admin.controller;
+import cn.hutool.Hutool;
+import cn.hutool.core.util.RandomUtil;
+import com.popjun.annotation.NeedLog;
 import com.popjun.constants.enums.CodeEnum;
 import com.popjun.constants.enums.UrlEnum;
 import com.popjun.exception.BaseController;
@@ -17,6 +20,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Random;
 
 @Controller
 public class LoginController  extends BaseController {
@@ -24,11 +28,13 @@ public class LoginController  extends BaseController {
     private LoginService loginService;
 
     @RequestMapping(value = "user/redirectLogin")
+    @NeedLog
     public ModelAndView redirectLogin() {
-      return new ModelAndView("redirect:"+ UrlEnum.INTERFACE_URL.getUrl()+"?token="+AbstractCasFilter.CONST_CAS_ASSERTION);
+      return new ModelAndView("redirect:"+ UrlEnum.INTERFACE_URL.getUrl()+"?token="+ RandomUtil.randomNumbers(5));
     }
 
     @RequestMapping(value = "user/info")
+    @NeedLog
     public @ResponseBody ResultVO getUserWithToken(HttpServletRequest request , String token,HttpServletResponse response,HttpSession session) throws IOException {
         Map infoMap = Optional.ofNullable(token).map(t -> loginService.getInfoForToken(request,t)).orElse(new HashMap<>());
         if (infoMap.isEmpty()){
@@ -37,6 +43,7 @@ public class LoginController  extends BaseController {
         return new ResultVO(CodeEnum.SUCCESS.getCode(),infoMap);
     }
     @RequestMapping("user/logout")
+    @NeedLog
     public void logout(HttpServletResponse response,HttpSession session) throws Exception {
         loginService.redirectLogin(response,session);
     }

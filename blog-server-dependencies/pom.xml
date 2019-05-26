@@ -14,7 +14,6 @@
     <name>blog-server-dependencies</name>
     <packaging>pom</packaging>
     <description>作为依赖管理工程管理jar包版本</description>
-
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -41,6 +40,11 @@
         <cas.spring.boot.version>0.0.1-SNAPSHOT</cas.spring.boot.version>
         <spring-data-redis>2.1.5.RELEASE</spring-data-redis>
         <redis.version>2.9.0</redis.version>
+        <aspectjrt.version>1.9.2</aspectjrt.version>
+        <cglib.version>3.2.4</cglib.version>
+        <spring-aop.version>5.1.5.RELEASE</spring-aop.version>
+        <aop.version>2.1.1.RELEASE</aop.version>
+
     </properties>
     <repositories>
         <repository>
@@ -72,10 +76,12 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-data-redis</artifactId>
+                <version>${spring-data-redis}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-cache</artifactId>
+                <version>${spring-data-redis}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.data</groupId>
@@ -300,6 +306,35 @@
                 <artifactId>hutool-all</artifactId>
                 <version>${hutool.version}</version>
             </dependency>
+
+            <!--aop的支持-->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-aop</artifactId>
+                <version>${aop.version}</version>
+            </dependency>
+            <!--AspectJ-->
+            <dependency>
+                <groupId>org.aspectj</groupId>
+                <artifactId>aspectjrt</artifactId>
+                <version>${aspectjrt.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.aspectj</groupId>
+                <artifactId>aspectjweaver</artifactId>
+                <version>${aspectjrt.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cglib</groupId>
+                <artifactId>cglib</artifactId>
+                <version>${cglib.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-aop</artifactId>
+                <version>${spring-aop.version}</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 

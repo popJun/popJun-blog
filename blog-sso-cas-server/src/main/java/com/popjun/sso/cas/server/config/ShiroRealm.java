@@ -1,6 +1,7 @@
 package com.popjun.sso.cas.server.config;
 
 
+import com.popjun.annotation.NeedLog;
 import com.popjun.server.domain.sso.BlogUser;
 import com.popjun.server.service.admin.api.BlogUserService;
 import org.apache.shiro.authc.*;
@@ -13,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 /**
  * 创建Shiro
  */
+@NeedLog
 public class ShiroRealm  extends AuthorizingRealm  {
 
     @Autowired

@@ -21,7 +21,7 @@
                 password="${jdbc.password}">
         </jdbcConnection>
 
-        <javaModelGenerator targetPackage="com.popjun.sso.cas.server.domain" targetProject="src/main/java"/>
+        <javaModelGenerator targetPackage="com.popjun.server.domian.admin" targetProject="src/main/java"/>
 
         <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources"/>
 
@@ -29,17 +29,21 @@
                 targetPackage="com.popjun.sso.cas.server.mapper"
                 targetProject="src/main/java"
                 type="XMLMAPPER"/>
-
-        <table tableName="blog_role">
-            <!-- mysql 配置 -->
+<!--        <table tableName="blog_role">
+            &lt;!&ndash; mysql 配置 &ndash;&gt;
             <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
         </table>
         <table tableName="blog_user">
-            <!-- mysql 配置 -->
+            &lt;!&ndash; mysql 配置 &ndash;&gt;
             <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
         </table>
         <table tableName="blog_user_role">
+            &lt;!&ndash; mysql 配置 &ndash;&gt;
+        </table>-->
+
+        <table tableName="blog_exception_log">
             <!-- mysql 配置 -->
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
         </table>
     </context>
 </generatorConfiguration>

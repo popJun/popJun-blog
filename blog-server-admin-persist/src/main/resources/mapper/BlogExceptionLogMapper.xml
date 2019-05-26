@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.popjun.server.admin.persist.dao.BlogExceptionLogMapper">
+  <resultMap id="BaseResultMap" type="com.popjun.server.domain.admin.BlogExceptionLog">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <result column="id" jdbcType="BIGINT" property="id" />
+    <result column="exception_json" jdbcType="VARCHAR" property="exceptionJson" />
+    <result column="exception_message" jdbcType="VARCHAR" property="exceptionMessage" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+
+  <sql id="All">
+    select * from blog_exception_log
+  </sql>
+
+  <insert id="insert" parameterType="blogExceptionLog" useGeneratedKeys="true" keyProperty="id">
+    insert into blog_exception_log(exception_json,exception_message,create_time)
+     values (#{exceptionJson},#{exceptionMessage},#{createTime})
+  </insert>
+</mapper>

@@ -2,6 +2,7 @@ package com.popjun.sso.cas.server.custom.handler;
 
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.popjun.annotation.NeedLog;
 import com.popjun.constants.Constant;
 import com.popjun.server.domain.sso.BlogUser;
 import com.popjun.server.service.admin.api.BlogRoleService;
@@ -16,10 +17,13 @@ import org.apereo.cas.authentication.handler.support.AbstractPreAndPostProcessin
 import org.apereo.cas.authentication.principal.PrincipalFactory;
 import org.apereo.cas.services.ServicesManager;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.security.GeneralSecurityException;
 import java.util.HashMap;
 import java.util.Map;
+
+@Component
 
 public class TotalHandler  extends AbstractPreAndPostProcessingAuthenticationHandler {
     @Autowired

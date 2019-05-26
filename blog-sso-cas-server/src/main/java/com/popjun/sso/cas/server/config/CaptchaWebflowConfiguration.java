@@ -1,4 +1,5 @@
 package com.popjun.sso.cas.server.config;
+import com.popjun.annotation.NeedLog;
 import com.popjun.sso.cas.server.config.captcha.RememberMeCaptchaWebflowConfigurer;
 import org.apereo.cas.configuration.CasConfigurationProperties;
 import org.apereo.cas.web.flow.CasWebflowConfigurer;
