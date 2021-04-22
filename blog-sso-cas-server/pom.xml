@@ -18,7 +18,7 @@
         <lombok.version>1.18.2</lombok.version>
         <mysql.verson>5.1.36</mysql.verson>
         <druid.version>1.0.28</druid.version>
-        <mybatis.version>3.3.0</mybatis.version>
+        <mybatis.version>3.5.6</mybatis.version>
         <shiro.spring.version>1.4.0</shiro.spring.version>
         <blog.sso.cas.server.api.version>1.0.0</blog.sso.cas.server.api.version>
         <popijun.version>1.0.0-SNAPSHOT</popijun.version>
